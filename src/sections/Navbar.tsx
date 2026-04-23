@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ButtonLink } from "../components/ButtonLink";
 import { Container } from "../components/Container";
 
@@ -12,6 +12,32 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  // Close on ESC key
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen, closeMenu]);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--fw-border)] bg-[var(--fw-bg)]">
@@ -32,7 +58,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="transition-colors duration-200 hover:text-[var(--fw-text)]"
+                  className="transition-colors duration-150 ease-out hover:text-[var(--fw-text)]"
                 >
                   {link.label}
                 </a>
@@ -49,69 +75,89 @@ export function Navbar() {
             </ButtonLink>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger — animated 3-line → X */}
           <button
             type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center border border-[var(--fw-border)] text-[var(--fw-text)] md:hidden"
+            className="relative flex h-10 w-10 items-center justify-center border border-[var(--fw-border)] text-[var(--fw-text)] md:hidden"
           >
-            <svg
-              width="18"
-              height="14"
-              viewBox="0 0 18 14"
-              fill="none"
+            {/* Top line */}
+            <span
               aria-hidden="true"
-              className="text-current"
-            >
-              {menuOpen ? (
-                <>
-                  <line x1="2" y1="2" x2="16" y2="12" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="2" y1="12" x2="16" y2="2" stroke="currentColor" strokeWidth="1.5" />
-                </>
-              ) : (
-                <>
-                  <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="0" y1="13" x2="18" y2="13" stroke="currentColor" strokeWidth="1.5" />
-                </>
-              )}
-            </svg>
+              className="absolute h-[1.5px] w-[18px] bg-current transition-all duration-150 ease-out"
+              style={{
+                transform: menuOpen
+                  ? "translateY(0) rotate(45deg)"
+                  : "translateY(-5px) rotate(0deg)",
+              }}
+            />
+            {/* Middle line */}
+            <span
+              aria-hidden="true"
+              className="absolute h-[1.5px] w-[18px] bg-current transition-opacity duration-150 ease-out"
+              style={{ opacity: menuOpen ? 0 : 1 }}
+            />
+            {/* Bottom line */}
+            <span
+              aria-hidden="true"
+              className="absolute h-[1.5px] w-[18px] bg-current transition-all duration-150 ease-out"
+              style={{
+                transform: menuOpen
+                  ? "translateY(0) rotate(-45deg)"
+                  : "translateY(5px) rotate(0deg)",
+              }}
+            />
           </button>
         </div>
       </Container>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
+      {/* Mobile Menu Overlay + Panel */}
+      <div
+        className={`fixed inset-0 top-[57px] z-40 md:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/20 transition-opacity duration-150 ease-out"
+          style={{ opacity: menuOpen ? 1 : 0 }}
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+
+        {/* Panel */}
         <nav
           id="mobile-nav-menu"
           aria-label="Mobile navigation"
-          className="border-t border-[var(--fw-border)] bg-[var(--fw-bg)] md:hidden"
+          className="relative border-b border-[var(--fw-border)] bg-[var(--fw-bg)] transition-all duration-150 ease-out"
+          style={{
+            opacity: menuOpen ? 1 : 0,
+            transform: menuOpen ? "translateY(0)" : "translateY(-8px)",
+          }}
         >
-          <Container className="py-4">
-            <ul className="space-y-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
+          <Container className="py-6">
+            <ul className="space-y-5 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block py-1 transition-colors duration-200 hover:text-[var(--fw-text)]"
+                    onClick={closeMenu}
+                    className="block py-1 transition-colors duration-150 ease-out hover:text-[var(--fw-text)]"
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 border-t border-[var(--fw-border)] pt-4">
+            <div className="mt-6 border-t border-[var(--fw-border)] pt-6">
               <ButtonLink href="#pricing" ariaLabel="Start your free trial" className="w-full">
                 Start Free Trial
               </ButtonLink>
             </div>
           </Container>
         </nav>
-      )}
+      </div>
     </header>
   );
 }
