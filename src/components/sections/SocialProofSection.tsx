@@ -1,9 +1,11 @@
+"use client";
+
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Container } from "../components/Container";
-import { SectionHeader } from "../components/SectionHeader";
-import { siteContent } from "../data/siteContent";
-import { fadeUp, fadeOnly, viewport, ease, duration } from "../lib/motion";
+import { Container } from "@/components/ui/Container";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { siteContent } from "@/data/siteContent";
+import { fadeUp, fadeOnly, viewport, ease, duration } from "@/lib/motion";
 
 const { testimonials } = siteContent;
 

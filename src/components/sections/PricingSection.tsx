@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Container } from "../components/Container";
-import { PricingTier } from "../components/PricingTier";
-import { SectionHeader } from "../components/SectionHeader";
-import { siteContent } from "../data/siteContent";
-import { fadeUp, stagger, fadeOnly, viewport, ease } from "../lib/motion";
+import { Container } from "@/components/ui/Container";
+import { PricingTier } from "@/components/ui/PricingTier";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { siteContent } from "@/data/siteContent";
+import { fadeUp, stagger, fadeOnly, viewport, ease } from "@/lib/motion";
 
 const { pricing } = siteContent;
 

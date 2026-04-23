@@ -1,7 +1,9 @@
+"use client";
+
 import { motion, useReducedMotion } from "framer-motion";
-import { Container } from "../components/Container";
-import { siteContent } from "../data/siteContent";
-import { fadeUp, stagger, fadeOnly, viewport } from "../lib/motion";
+import { Container } from "@/components/ui/Container";
+import { siteContent } from "@/data/siteContent";
+import { fadeUp, stagger, fadeOnly, viewport } from "@/lib/motion";
 
 const { value } = siteContent;
 

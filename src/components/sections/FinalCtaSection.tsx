@@ -1,8 +1,10 @@
+"use client";
+
 import { motion, useReducedMotion } from "framer-motion";
-import { ButtonLink } from "../components/ButtonLink";
-import { Container } from "../components/Container";
-import { siteContent } from "../data/siteContent";
-import { fadeUp, stagger, fadeOnly, viewport } from "../lib/motion";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { Container } from "@/components/ui/Container";
+import { siteContent } from "@/data/siteContent";
+import { fadeUp, stagger, fadeOnly, viewport } from "@/lib/motion";
 
 const { finalCta } = siteContent;
 

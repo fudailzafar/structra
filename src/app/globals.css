@@ -1,4 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ─── */
 :root {
+  --font-sans: 'Inter', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', 'Consolas', monospace;
   --fw-bg: #ffffff;
   --fw-concrete: #f3f4f2;
   --fw-surface: #fafaf9;
@@ -9,6 +18,7 @@
   --fw-accent: #ff5733;
 }
 
+/* ─── Base resets ─── */
 @layer base {
   *,
   *::before,
@@ -17,14 +27,9 @@
     border-radius: 0;
   }
 
-  html,
-  body,
-  #root {
-    min-height: 100%;
-  }
-
   html {
     font-size: 16px;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -46,5 +51,12 @@
   svg {
     display: block;
     max-width: 100%;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

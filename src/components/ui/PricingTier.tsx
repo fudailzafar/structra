@@ -1,6 +1,8 @@
+"use client";
+
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ButtonLink } from "./ButtonLink";
-import { ease, duration } from "../lib/motion";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ease, duration } from "@/lib/motion";
 
 type PricingTierProps = {
   name: string;

@@ -1,7 +1,9 @@
+"use client";
+
 import { useState, useEffect, useCallback } from "react";
-import { ButtonLink } from "../components/ButtonLink";
-import { Container } from "../components/Container";
-import { siteContent } from "../data/siteContent";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { Container } from "@/components/ui/Container";
+import { siteContent } from "@/data/siteContent";
 
 const { brand, navbar } = siteContent;
 

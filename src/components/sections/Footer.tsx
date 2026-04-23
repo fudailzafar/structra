@@ -1,6 +1,8 @@
-import { Container } from "../components/Container";
-import { siteContent } from "../data/siteContent";
-import type { FooterLink } from "../data/siteContent";
+"use client";
+
+import { Container } from "@/components/ui/Container";
+import { siteContent } from "@/data/siteContent";
+import type { FooterLink } from "@/data/siteContent";
 
 const { brand, footer } = siteContent;
 

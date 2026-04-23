@@ -1,8 +1,10 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Container } from "../components/Container";
-import { siteContent } from "../data/siteContent";
-import { fadeUp, fadeOnly, viewport, ease, duration } from "../lib/motion";
+import { Container } from "@/components/ui/Container";
+import { siteContent } from "@/data/siteContent";
+import { fadeUp, fadeOnly, viewport, ease, duration } from "@/lib/motion";
 
 const { transformation } = siteContent;
 
