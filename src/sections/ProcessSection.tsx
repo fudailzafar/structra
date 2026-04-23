@@ -1,21 +1,18 @@
 import { Container } from "../components/Container";
 
-/* ─── Mock UI blocks for each step ─── */
+/* ─── Mock UI blocks ─── */
 
 function CaptureUI() {
   return (
     <div className="border border-[var(--fw-border)]">
-      {/* Title bar */}
       <div className="flex items-center justify-between border-b border-[var(--fw-border)] px-4 py-2.5">
         <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">New Entry</span>
         <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">Field</span>
       </div>
       <div className="space-y-3 p-4">
-        {/* Photo placeholder */}
         <div className="flex h-16 items-center justify-center border border-dashed border-[var(--fw-border-strong)] bg-[var(--fw-concrete)]">
           <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.14em] text-[var(--fw-muted)]">+ Photo</span>
         </div>
-        {/* Input lines */}
         <div className="h-8 border border-[var(--fw-border)] px-3 py-2">
           <div className="h-2 w-3/5 bg-[var(--fw-border)]" />
         </div>
@@ -59,14 +56,12 @@ function CommunicateUI() {
         <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">Ready</span>
       </div>
       <div className="space-y-3 p-4">
-        {/* Report header */}
         <div>
           <div className="h-2.5 w-7/12 bg-[var(--fw-text)]" />
           <div className="mt-2 h-1.5 w-full bg-[var(--fw-border)]" />
           <div className="mt-1 h-1.5 w-10/12 bg-[var(--fw-border)]" />
         </div>
         <div className="h-px w-full bg-[var(--fw-border)]" />
-        {/* Report body */}
         <div>
           <div className="h-2.5 w-5/12 bg-[var(--fw-text)]" />
           <div className="mt-2 h-1.5 w-full bg-[var(--fw-border)]" />
@@ -106,7 +101,7 @@ export function ProcessSection() {
   return (
     <section id="process" aria-labelledby="process-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
       <Container>
-        {/* Split header: title left, description right */}
+        {/* Split header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Operating Model</p>
@@ -122,11 +117,11 @@ export function ProcessSection() {
           </p>
         </div>
 
-        {/* 3-column grid with 1px vertical dividers */}
+        {/* 3-column grid with 1px dividers */}
         <div className="mt-14 grid grid-cols-1 gap-px border border-[var(--fw-border)] bg-[var(--fw-border)] md:grid-cols-3">
           {STEPS.map((step) => (
-            <article key={step.step} className="flex flex-col bg-[var(--fw-bg)] p-6 md:p-8">
-              {/* Step indicator */}
+            <article key={step.step} className="flex h-full flex-col bg-[var(--fw-bg)] p-6 md:p-8">
+              {/* Top — Step indicator */}
               <div className="mb-6 flex items-center gap-3">
                 <span className="grid h-8 w-8 place-items-center border border-[var(--fw-text)] font-[var(--font-mono)] text-[9px] tracking-[0.2em] text-[var(--fw-text)]">
                   {step.step}
@@ -134,14 +129,16 @@ export function ProcessSection() {
                 <span className="h-px flex-1 bg-[var(--fw-border)]" aria-hidden="true" />
               </div>
 
-              {/* Mock UI */}
-              <div className="mb-6" aria-hidden="true">
+              {/* Middle — Mock UI (fixed height for alignment) */}
+              <div className="h-[200px]" aria-hidden="true">
                 <step.UI />
               </div>
 
-              {/* Text */}
-              <h3 className="text-lg font-medium tracking-[-0.02em] text-[var(--fw-text)]">{step.title}</h3>
-              <p className="mt-2 text-sm leading-7 text-[var(--fw-muted)]">{step.description}</p>
+              {/* Bottom — Text block (mt-auto anchors to bottom) */}
+              <div className="mt-auto pt-6">
+                <h3 className="text-lg font-medium tracking-[-0.02em] text-[var(--fw-text)]">{step.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-[var(--fw-muted)]">{step.description}</p>
+              </div>
             </article>
           ))}
         </div>

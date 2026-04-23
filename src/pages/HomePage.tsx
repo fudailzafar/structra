@@ -7,6 +7,7 @@ import { PricingSection } from "../sections/PricingSection";
 import { ProcessSection } from "../sections/ProcessSection";
 import { SocialProofSection } from "../sections/SocialProofSection";
 import { TransformationSection } from "../sections/TransformationSection";
+import { ValueSection } from "../sections/ValueSection";
 
 export function HeroSlot() {
   return <HeroSection />;
@@ -18,6 +19,7 @@ export function HomeContent() {
 
   return (
     <div ref={pageRef}>
+      <div className="reveal"><ValueSection /></div>
       <div className="reveal"><ProcessSection /></div>
       <div className="reveal"><TransformationSection /></div>
       <div className="reveal"><SocialProofSection /></div>
