@@ -1,4 +1,7 @@
 import { Container } from "../components/Container";
+import { siteContent } from "../data/siteContent";
+
+const { process } = siteContent;
 
 /* ─── Mock UI blocks ─── */
 
@@ -74,26 +77,9 @@ function CommunicateUI() {
 
 /* ─── Step data ─── */
 
-const STEPS = [
-  {
-    step: "01",
-    title: "Capture",
-    description: "Take site photos and voice notes directly in the field without switching tools.",
-    UI: CaptureUI,
-  },
-  {
-    step: "02",
-    title: "Contextualize",
-    description: "Structra groups updates by date, location, and project stage automatically.",
-    UI: ContextualizeUI,
-  },
-  {
-    step: "03",
-    title: "Communicate",
-    description: "Generate clean, client-ready reports in minutes with consistent structure.",
-    UI: CommunicateUI,
-  },
-];
+const UI_MAP = [CaptureUI, ContextualizeUI, CommunicateUI];
+
+const STEPS = process.steps.map((step, i) => ({ ...step, UI: UI_MAP[i] }));
 
 /* ─── Section ─── */
 
@@ -104,16 +90,16 @@ export function ProcessSection() {
         {/* Split header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Operating Model</p>
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{process.kicker}</p>
             <h2
               id="process-heading"
               className="mt-3 text-3xl leading-tight tracking-[-0.03em] text-[var(--fw-text)] md:text-4xl"
             >
-              Three steps. Zero friction.
+              {process.heading}
             </h2>
           </div>
           <p className="max-w-[340px] text-sm leading-7 text-[var(--fw-muted)] md:text-right">
-            From field capture to client-ready documentation in one continuous workflow.
+            {process.description}
           </p>
         </div>
 

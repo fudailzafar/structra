@@ -1,28 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Container } from "../components/Container";
+import { siteContent } from "../data/siteContent";
+
+const { transformation } = siteContent;
 
 /* ─── Step data ─── */
 
-const STEPS = [
-  {
-    id: 0,
-    step: "01",
-    title: "Capture",
-    description: "Take photos, notes, and voice memos directly on site. No context switching.",
-  },
-  {
-    id: 1,
-    step: "02",
-    title: "Contextualize",
-    description: "Entries are grouped by project, phase, date, and location automatically.",
-  },
-  {
-    id: 2,
-    step: "03",
-    title: "Communicate",
-    description: "Generate structured, client-ready progress reports in minutes.",
-  },
-];
+const STEPS = transformation.steps;
 
 /* ─── Preview UIs ─── */
 
@@ -177,15 +161,15 @@ export function TransformationSection() {
         <div className="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
           {/* Left — Heading + Step list */}
           <div>
-            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Transformation</p>
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{transformation.kicker}</p>
             <h2
               id="transformation-heading"
               className="mt-3 text-3xl leading-tight tracking-[-0.03em] text-[var(--fw-text)] md:text-4xl"
             >
-              From chaos to clarity.
+              {transformation.heading}
             </h2>
             <p className="mt-4 max-w-[320px] text-sm leading-7 text-[var(--fw-muted)]">
-              See how raw field data becomes structured, client-ready documentation.
+              {transformation.description}
             </p>
 
             {/* Step list */}
