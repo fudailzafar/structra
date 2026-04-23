@@ -1,5 +1,5 @@
 import { SiteLayout } from "../components/SiteLayout";
-import { HomePage } from "../pages/HomePage";
+import { HeroSlot, HomeContent } from "../pages/HomePage";
 import { NotFoundPage } from "../pages/NotFoundPage";
 
 function normalizePathname(pathname: string) {
@@ -13,7 +13,13 @@ function normalizePathname(pathname: string) {
 export default function App() {
   const pathname = normalizePathname(window.location.pathname);
 
-  const page = pathname === "/" ? <HomePage /> : <NotFoundPage />;
+  if (pathname === "/") {
+    return (
+      <SiteLayout heroSlot={<HeroSlot />}>
+        <HomeContent />
+      </SiteLayout>
+    );
+  }
 
-  return <SiteLayout>{page}</SiteLayout>;
+  return <SiteLayout><NotFoundPage /></SiteLayout>;
 }

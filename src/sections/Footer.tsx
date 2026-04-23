@@ -34,7 +34,7 @@ const LEGAL_LINKS: FooterLink[] = [
 function FooterLinkGroup({ title, links, ariaLabel }: FooterLinkGroupProps) {
   return (
     <nav aria-label={ariaLabel}>
-      <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-white/65">{title}</p>
+      <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">{title}</p>
       <ul className="mt-3 space-y-2">
         {links.map((link) => (
           <li key={link.label}>
@@ -42,7 +42,7 @@ function FooterLinkGroup({ title, links, ariaLabel }: FooterLinkGroupProps) {
               href={link.href}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noreferrer" : undefined}
-              className="text-sm leading-6 text-white/72 transition-colors duration-200 hover:text-white"
+              className="text-sm leading-6 text-[var(--fw-muted)] transition-colors duration-200 hover:text-[var(--fw-text)]"
             >
               {link.label}
             </a>
@@ -55,17 +55,17 @@ function FooterLinkGroup({ title, links, ariaLabel }: FooterLinkGroupProps) {
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--fw-border-strong)] bg-[#16181a] text-white">
+    <footer className="border-t border-[var(--fw-border)] bg-[var(--fw-bg)]">
       <Container className="py-12 md:py-14">
         {/* Main: Left block + Right block */}
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           {/* Left — Brand + Newsletter */}
           <section className="max-w-[300px] shrink-0">
-            <a href="/" aria-label="Structra home" className="font-[var(--font-mono)] text-sm tracking-[0.24em] text-white">
+            <a href="/" aria-label="Structra home" className="font-black text-sm tracking-[0.01em] text-[var(--fw-text)] [font-weight:900]">
               STRUCTRA
             </a>
 
-            <p className="mt-3 text-sm leading-6 text-white/75">
+            <p className="mt-3 text-sm leading-6 text-[var(--fw-muted)]">
               Documentation, structured.
             </p>
 
@@ -75,7 +75,7 @@ export function Footer() {
                 event.preventDefault();
               }}
             >
-              <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-white/65">Join our newsletter</p>
+              <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">Join our newsletter</p>
               <label htmlFor="footer-newsletter-email" className="sr-only">
                 Email address
               </label>
@@ -86,7 +86,7 @@ export function Footer() {
                   type="email"
                   required
                   placeholder="Email address"
-                  className="h-10 w-full border border-white/25 bg-[#111315] px-3.5 text-sm text-white placeholder:text-white/45 focus:border-white/45 focus:outline-none"
+                  className="h-10 w-full border border-[var(--fw-border)] bg-[var(--fw-bg)] px-3.5 text-sm text-[var(--fw-text)] placeholder:text-[var(--fw-muted)]/50 focus:border-[var(--fw-border-strong)] focus:outline-none"
                 />
                 <button
                   type="submit"
@@ -106,14 +106,14 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/60">© 2026 Structra</p>
+        <div className="mt-8 flex flex-col gap-3 border-t border-[var(--fw-border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--fw-muted)]">© 2026 Structra</p>
 
           <nav aria-label="Footer legal links">
-            <ul className="flex items-center gap-4 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/55">
+            <ul className="flex items-center gap-4 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--fw-muted)]">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="transition-colors duration-200 hover:text-white/85">
+                  <a href={link.href} className="transition-colors duration-200 hover:text-[var(--fw-text)]">
                     {link.label}
                   </a>
                 </li>

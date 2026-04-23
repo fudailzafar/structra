@@ -8,13 +8,16 @@ import { ProcessSection } from "../sections/ProcessSection";
 import { SocialProofSection } from "../sections/SocialProofSection";
 import { TransformationSection } from "../sections/TransformationSection";
 
-export function HomePage() {
+export function HeroSlot() {
+  return <HeroSection />;
+}
+
+export function HomeContent() {
   const pageRef = useRef<HTMLDivElement>(null);
   useReveal(pageRef);
 
   return (
     <div ref={pageRef}>
-      <HeroSection />
       <div className="reveal"><ProcessSection /></div>
       <div className="reveal"><TransformationSection /></div>
       <div className="reveal"><SocialProofSection /></div>

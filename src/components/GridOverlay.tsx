@@ -1,19 +1,18 @@
 /**
  * Global architectural grid overlay.
- * Renders continuous vertical guide lines that span the full page height,
- * aligned with the Container edges and center.
+ * Renders continuous vertical guide lines aligned with the Container.
  *
- * - pointer-events: none (does not block interaction)
- * - z-index: 0 (behind all content)
- * - Responsive: 4 lines on desktop, 2 on mobile
+ * - position: absolute (stretches with parent height)
+ * - pointer-events: none
+ * - z-index: 0 (behind content)
+ * - 4 lines on desktop, 2 on mobile
  */
 export function GridOverlay() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 mx-auto w-full max-w-[1200px] px-6 md:px-8"
+      className="pointer-events-none absolute inset-0 z-0 mx-auto w-full max-w-[1200px] px-6 md:px-8"
     >
-      {/* Vertical guide lines */}
       <div className="relative flex h-full justify-between">
         {/* Left edge */}
         <div className="h-full w-px bg-[var(--fw-border)]/30" />
