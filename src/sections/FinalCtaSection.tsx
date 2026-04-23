@@ -21,10 +21,10 @@ export function FinalCtaSection() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <ButtonLink href="/#pricing" ariaLabel="Start your free trial">
+              <ButtonLink href="#pricing" ariaLabel="Start your free trial">
                 Start Free Trial
               </ButtonLink>
-              <ButtonLink href="/about" variant="ghost" ariaLabel="Read more about FieldWork">
+              <ButtonLink href="#process" variant="ghost" ariaLabel="Learn about our process">
                 Read Our Approach
               </ButtonLink>
             </div>

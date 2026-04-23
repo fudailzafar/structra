@@ -11,9 +11,13 @@ export function HeroSection() {
 
             <h1
               id="hero-heading"
-              className="mt-6 text-balance text-[clamp(2.25rem,7vw,4.5rem)] leading-[1.02] tracking-[-0.04em] text-[var(--fw-text)]"
+              className="mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
             >
-              Site documentation that works like you do.
+              Site documentation
+              <br />
+              that works
+              <br />
+              like you do.
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-8 text-[var(--fw-muted)]">

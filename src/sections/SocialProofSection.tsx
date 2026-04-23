@@ -21,7 +21,7 @@ const TESTIMONIALS = [
 
 export function SocialProofSection() {
   return (
-    <section aria-labelledby="social-proof-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
+    <section id="testimonials" aria-labelledby="social-proof-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
       <Container className="max-w-[960px]">
         <SectionHeader id="social-proof-heading" title="Trusted by teams that build in the real world." />
 

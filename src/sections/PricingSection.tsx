@@ -15,7 +15,7 @@ const PRICING_TIERS = [
       "No team collaboration",
     ],
     ctaLabel: "Get Started",
-    ctaHref: "/#top",
+    ctaHref: "#top",
   },
   {
     name: "Professional",
@@ -31,7 +31,7 @@ const PRICING_TIERS = [
       "Priority support",
     ],
     ctaLabel: "Start Free Trial",
-    ctaHref: "/#top",
+    ctaHref: "#top",
     isPrimary: true,
   },
   {
@@ -45,7 +45,7 @@ const PRICING_TIERS = [
       "Custom integrations",
     ],
     ctaLabel: "Contact Sales",
-    ctaHref: "/about",
+    ctaHref: "mailto:hello@fieldwork.com",
   },
 ];
 
