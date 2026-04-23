@@ -22,7 +22,7 @@ export function PricingTier({
   className = "",
 }: PricingTierProps) {
   return (
-    <article className={`flex h-full flex-col px-6 py-8 md:px-8 md:py-10 ${isPrimary ? "bg-[var(--fw-concrete)]" : "bg-[var(--fw-bg)]"} ${className}`.trim()}>
+    <article className={`flex h-full flex-col px-6 py-8 transition-colors duration-150 ease-out md:px-8 md:py-10 ${isPrimary ? "bg-[var(--fw-concrete)]" : "bg-[var(--fw-bg)] hover:bg-[var(--fw-surface)]"} ${className}`.trim()}>
       <header>
         <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{name}</p>
         <p className="mt-4 text-5xl leading-none tracking-[-0.04em] text-[var(--fw-text)] md:text-6xl">{price}</p>

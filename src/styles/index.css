@@ -5,3 +5,113 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ─── Scroll-reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Hero staggered entrance ─── */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-enter {
+  animation: hero-enter 200ms ease-out both;
+}
+
+.hero-enter-delay-1 {
+  animation-delay: 60ms;
+}
+
+.hero-enter-delay-2 {
+  animation-delay: 120ms;
+}
+
+.hero-enter-delay-3 {
+  animation-delay: 180ms;
+}
+
+/* Hero mock window */
+@keyframes hero-window-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-window-enter {
+  animation: hero-window-enter 250ms ease-out 100ms both;
+}
+
+/* ─── FAQ expand/collapse ─── */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 180ms ease-out, opacity 150ms ease-out;
+}
+
+.faq-answer[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq-answer-inner {
+  overflow: hidden;
+}
+
+/* FAQ icon rotation */
+.faq-icon {
+  transition: transform 150ms ease-out;
+}
+
+.faq-icon[data-open="true"] {
+  transform: rotate(90deg);
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-enter,
+  .hero-window-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .faq-answer {
+    transition: none;
+  }
+
+  .faq-icon {
+    transition: none;
+  }
+}

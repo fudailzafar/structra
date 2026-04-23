@@ -20,7 +20,7 @@ export function Navbar() {
         <a
           href="/"
           aria-label="Structra home"
-          className="font-[var(--font-mono)] text-sm tracking-[0.22em] text-[var(--fw-text)]"
+          className="font-black text-sm tracking-[0.01em] text-[var(--fw-text)] [font-weight:900]"
         >
           STRUCTRA
         </a>

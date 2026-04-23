@@ -40,31 +40,6 @@ const FAQ_ITEMS = [
   },
 ];
 
-function FaqIcon({ isOpen }: { isOpen: boolean }) {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      className="shrink-0 text-[var(--fw-muted)]"
-    >
-      {isOpen ? (
-        <>
-          <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" strokeWidth="1.5" />
-        </>
-      ) : (
-        <>
-          <line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" strokeWidth="1.5" />
-          <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" />
-        </>
-      )}
-    </svg>
-  );
-}
-
 export function FaqSection() {
   const [openItemId, setOpenItemId] = useState<string | null>(null);
 
@@ -109,7 +84,19 @@ export function FaqSection() {
                     <span className="text-lg font-medium leading-7 tracking-[-0.01em] text-[var(--fw-text)]">
                       {item.question}
                     </span>
-                    <FaqIcon isOpen={isOpen} />
+                    {/* Animated +/× icon */}
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                      className="faq-icon shrink-0 text-[var(--fw-muted)]"
+                      data-open={isOpen}
+                    >
+                      <line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" strokeWidth="1.5" />
+                      <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
                   </button>
                 </h3>
 
@@ -117,11 +104,14 @@ export function FaqSection() {
                   id={answerId}
                   role="region"
                   aria-labelledby={questionId}
-                  className={isOpen ? "pb-6" : "hidden"}
+                  className="faq-answer"
+                  data-open={isOpen}
                 >
-                  <p className="max-w-3xl text-base leading-relaxed text-[var(--fw-muted)]">
-                    {item.answer}
-                  </p>
+                  <div className="faq-answer-inner">
+                    <p className="max-w-3xl pb-6 text-base leading-relaxed text-[var(--fw-muted)]">
+                      {item.answer}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

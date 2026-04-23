@@ -7,11 +7,11 @@ export function HeroSection() {
       <Container>
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-2xl">
-            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Site Documentation Platform</p>
+            <p className="hero-enter font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Site Documentation Platform</p>
 
             <h1
               id="hero-heading"
-              className="mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
+              className="hero-enter hero-enter-delay-1 mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
             >
               Site documentation
               <br />
@@ -19,11 +19,11 @@ export function HeroSection() {
               like you do.
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
+            <p className="hero-enter hero-enter-delay-2 mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
               Transform field photos and notes into structured progress reports. No admin overhead. No lost context.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="hero-enter hero-enter-delay-3 mt-10 flex flex-wrap items-center gap-3">
               <ButtonLink href="#pricing" ariaLabel="Start your free trial">
                 Get Started
               </ButtonLink>
@@ -32,12 +32,12 @@ export function HeroSection() {
               </ButtonLink>
             </div>
 
-            <p className="mt-6 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
+            <p className="hero-enter hero-enter-delay-3 mt-6 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
               14-day free trial. No credit card required.
             </p>
           </div>
 
-          <div className="relative lg:pl-6">
+          <div className="hero-window-enter relative lg:pl-6">
             <div className="border border-[var(--fw-border-strong)] bg-[var(--fw-bg)] shadow-[0_24px_54px_rgba(15,23,42,0.14)]">
               <div className="flex items-center gap-2 border-b border-[var(--fw-border)] bg-[var(--fw-concrete)] px-4 py-3">
                 <span className="h-2.5 w-2.5 border border-[var(--fw-border-strong)]" aria-hidden="true" />
