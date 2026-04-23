@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { ButtonLink } from "./ButtonLink";
 
 type PricingTierProps = {
@@ -21,12 +22,44 @@ export function PricingTier({
   isPrimary = false,
   className = "",
 }: PricingTierProps) {
+  const [displayPrice, setDisplayPrice] = useState(price);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      setDisplayPrice(price);
+      return;
+    }
+
+    setIsAnimating(true);
+    const timeout = setTimeout(() => {
+      setDisplayPrice(price);
+      setIsAnimating(false);
+    }, 150);
+    return () => clearTimeout(timeout);
+  }, [price]);
+
   return (
     <article className={`flex h-full flex-col px-6 py-8 transition-colors duration-150 ease-out md:px-8 md:py-10 ${isPrimary ? "bg-[var(--fw-concrete)]" : "bg-[var(--fw-bg)] hover:bg-[var(--fw-surface)]"} ${className}`.trim()}>
       <header>
         <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{name}</p>
-        <p className="mt-4 text-5xl leading-none tracking-[-0.04em] text-[var(--fw-text)] md:text-6xl">{price}</p>
-        <p className="mt-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">{billingLabel}</p>
+        <p
+          className="mt-4 text-5xl leading-none tracking-[-0.04em] text-[var(--fw-text)] transition-all duration-150 ease-out md:text-6xl"
+          style={{
+            opacity: isAnimating ? 0 : 1,
+            transform: isAnimating ? "translateY(4px)" : "translateY(0)",
+          }}
+        >
+          {displayPrice}
+        </p>
+        <p
+          className="mt-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)] transition-opacity duration-150 ease-out"
+          style={{ opacity: isAnimating ? 0 : 1 }}
+        >
+          {isAnimating ? billingLabel : billingLabel}
+        </p>
       </header>
 
       <ul className="mt-10 flex-1 space-y-4">
