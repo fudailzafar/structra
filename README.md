@@ -26,8 +26,8 @@ A minimal, production-ready landing page template built with Next.js 14, designe
 ## Getting Started
 
 ```bash
-git clone https://github.com/your-username/structra-template.git
-cd structra-template
+git clone https://github.com/fudailzafar/structra.git
+cd structra
 npm install
 npm run dev
 ```
