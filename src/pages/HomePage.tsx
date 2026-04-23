@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { useReveal } from "../hooks/useReveal";
 import { FinalCtaSection } from "../sections/FinalCtaSection";
 import { FaqSection } from "../sections/FaqSection";
 import { HeroSection } from "../sections/HeroSection";
@@ -14,18 +12,15 @@ export function HeroSlot() {
 }
 
 export function HomeContent() {
-  const pageRef = useRef<HTMLDivElement>(null);
-  useReveal(pageRef);
-
   return (
-    <div ref={pageRef}>
-      <div className="reveal"><ValueSection /></div>
-      <div className="reveal"><ProcessSection /></div>
-      <div className="reveal"><TransformationSection /></div>
-      <div className="reveal"><SocialProofSection /></div>
-      <div className="reveal"><PricingSection /></div>
-      <div className="reveal"><FaqSection /></div>
-      <div className="reveal"><FinalCtaSection /></div>
-    </div>
+    <>
+      <ValueSection />
+      <ProcessSection />
+      <TransformationSection />
+      <SocialProofSection />
+      <PricingSection />
+      <FaqSection />
+      <FinalCtaSection />
+    </>
   );
 }

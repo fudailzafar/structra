@@ -1,22 +1,39 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { ButtonLink } from "../components/ButtonLink";
 import { Container } from "../components/Container";
 import { siteContent } from "../data/siteContent";
+import { ease, duration, scaleIn, stagger, fadeUp } from "../lib/motion";
 
 const { hero } = siteContent;
 
 export function HeroSection() {
   const titleParts = hero.title.split("\n");
+  const prefersReduced = useReducedMotion();
+
+  const itemVariant = prefersReduced
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: duration.normal } } }
+    : fadeUp;
+
+  const windowVariant = prefersReduced
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: duration.slow } } }
+    : scaleIn;
 
   return (
     <section id="top" aria-labelledby="hero-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24 lg:py-28">
       <Container>
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="max-w-2xl">
-            <p className="hero-enter font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{hero.kicker}</p>
+          <motion.div
+            className="max-w-2xl"
+            variants={stagger(0.12)}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.p variants={itemVariant} className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{hero.kicker}</motion.p>
 
-            <h1
+            <motion.h1
               id="hero-heading"
-              className="hero-enter hero-enter-delay-1 mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
+              variants={itemVariant}
+              className="mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
             >
               {titleParts.map((part, i) => (
                 <span key={i}>
@@ -24,27 +41,33 @@ export function HeroSection() {
                   {i < titleParts.length - 1 && <br />}
                 </span>
               ))}
-            </h1>
+            </motion.h1>
 
-            <p className="hero-enter hero-enter-delay-2 mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
+            <motion.p variants={itemVariant} className="mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
               {hero.subtitle}
-            </p>
+            </motion.p>
 
-            <div className="hero-enter hero-enter-delay-3 mt-10 flex flex-wrap items-center gap-3">
+            <motion.div variants={itemVariant} className="mt-10 flex flex-wrap items-center gap-3">
               <ButtonLink href={hero.primaryCta.href} ariaLabel="Start your free trial">
                 {hero.primaryCta.label}
               </ButtonLink>
               <ButtonLink href={hero.secondaryCta.href} variant="ghost" ariaLabel="Read the process section">
                 {hero.secondaryCta.label}
               </ButtonLink>
-            </div>
+            </motion.div>
 
-            <p className="hero-enter hero-enter-delay-3 mt-6 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
+            <motion.p variants={itemVariant} className="mt-6 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)]">
               {hero.trialNote}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="hero-window-enter relative lg:pl-6">
+          <motion.div
+            className="relative lg:pl-6"
+            variants={windowVariant}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.3, duration: duration.slow, ease: ease.out }}
+          >
             <div className="border border-[var(--fw-border-strong)] bg-[var(--fw-bg)] shadow-[0_24px_54px_rgba(15,23,42,0.14)]">
               <div className="flex items-center gap-2 border-b border-[var(--fw-border)] bg-[var(--fw-concrete)] px-4 py-3">
                 <span className="h-2.5 w-2.5 border border-[var(--fw-border-strong)]" aria-hidden="true" />
@@ -72,7 +95,7 @@ export function HeroSection() {
               <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{hero.mockWindow.badge.label}</p>
               <p className="mt-2 text-sm text-[var(--fw-text)]">{hero.mockWindow.badge.description}</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>

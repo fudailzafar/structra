@@ -1,6 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Container } from "../components/Container";
 import { siteContent } from "../data/siteContent";
+import { fadeUp, fadeOnly, viewport, ease, duration } from "../lib/motion";
 
 const { transformation } = siteContent;
 
@@ -127,27 +129,13 @@ const PREVIEWS = [CapturePreview, ContextualizePreview, CommunicatePreview];
 
 export function TransformationSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const pendingStep = useRef<number | null>(null);
+  const prefersReduced = useReducedMotion();
+  const item = prefersReduced ? fadeOnly : fadeUp;
 
   const switchTo = (index: number) => {
-    if (index === activeStep || isTransitioning) return;
-    pendingStep.current = index;
-    setIsTransitioning(true);
+    if (index === activeStep) return;
+    setActiveStep(index);
   };
-
-  // When transition-out completes, swap content and transition-in
-  useEffect(() => {
-    if (!isTransitioning) return;
-    const timeout = setTimeout(() => {
-      if (pendingStep.current !== null) {
-        setActiveStep(pendingStep.current);
-        pendingStep.current = null;
-      }
-      setIsTransitioning(false);
-    }, 200);
-    return () => clearTimeout(timeout);
-  }, [isTransitioning]);
 
   const ActivePreview = PREVIEWS[activeStep];
 
@@ -158,7 +146,13 @@ export function TransformationSection() {
       className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24"
     >
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
+        <motion.div
+          className="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16"
+          variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {/* Left — Heading + Step list */}
           <div>
             <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{transformation.kicker}</p>
@@ -212,16 +206,20 @@ export function TransformationSection() {
             </div>
           </div>
 
-          {/* Right — Dynamic preview */}
+          {/* Right — Dynamic preview with AnimatePresence */}
           <div className="relative">
-            <div
-              className="border border-[var(--fw-border)] transition-all duration-200 ease-out"
-              style={{
-                opacity: isTransitioning ? 0 : 1,
-                transform: isTransitioning ? "translateY(6px)" : "translateY(0)",
-              }}
-            >
-              <ActivePreview />
+            <div className="border border-[var(--fw-border)] overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, y: prefersReduced ? 0 : 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: prefersReduced ? 0 : -8 }}
+                  transition={{ duration: duration.fast, ease: ease.out }}
+                >
+                  <ActivePreview />
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Step label */}
@@ -229,7 +227,7 @@ export function TransformationSection() {
               Step {STEPS[activeStep].step} — {STEPS[activeStep].title}
             </p>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

@@ -59,7 +59,7 @@ export const siteContent = {
   // ── Brand ──
   brand: {
     name: "STRUCTRA",
-    tagline: "Documentation, structured.",
+    tagline: "Transform field photos and notes into structured progress reports. No admin overhead. No lost context.",
     copyright: "© 2026 Structra",
   },
 
@@ -323,7 +323,6 @@ export const siteContent = {
 
   // ── Footer ──
   footer: {
-    newsletterLabel: "Join our newsletter",
     navigation: [
       { label: "Process", href: "#process" },
       { label: "Transformation", href: "#transformation" },
@@ -335,10 +334,6 @@ export const siteContent = {
       { label: "Facebook", href: "https://facebook.com", external: true },
       { label: "LinkedIn", href: "https://linkedin.com", external: true },
       { label: "Twitter", href: "https://x.com", external: true },
-    ] as FooterLink[],
-    legal: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
     ] as FooterLink[],
   },
 };

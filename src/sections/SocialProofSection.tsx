@@ -1,28 +1,25 @@
 import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Container } from "../components/Container";
 import { SectionHeader } from "../components/SectionHeader";
 import { siteContent } from "../data/siteContent";
+import { fadeUp, fadeOnly, viewport, ease, duration } from "../lib/motion";
 
 const { testimonials } = siteContent;
 
 export function SocialProofSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const prefersReduced = useReducedMotion();
 
   const total = testimonials.items.length;
 
   const goTo = useCallback(
     (dir: "next" | "prev") => {
-      if (isTransitioning) return;
-      setDirection(dir);
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setActiveIndex((current) => dir === "next" ? (current + 1) % total : (current - 1 + total) % total);
-        setIsTransitioning(false);
-      }, 160);
+      setDirection(dir === "next" ? 1 : -1);
+      setActiveIndex((current) => dir === "next" ? (current + 1) % total : (current - 1 + total) % total);
     },
-    [isTransitioning, total],
+    [total],
   );
 
   useEffect(() => {
@@ -35,33 +32,40 @@ export function SocialProofSection() {
   }, [goTo]);
 
   const testimonial = testimonials.items[activeIndex];
-  const slideOffset = direction === "next" ? "10px" : "-10px";
-  const contentStyle: React.CSSProperties = {
-    opacity: isTransitioning ? 0 : 1,
-    transform: isTransitioning ? `translateX(${slideOffset})` : "translateX(0)",
-    transition: "opacity 160ms ease-out, transform 160ms ease-out",
-  };
+  const item = prefersReduced ? fadeOnly : fadeUp;
+  const xOffset = prefersReduced ? 0 : 16;
 
   return (
     <section id="testimonials" aria-labelledby="social-proof-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
       <Container className="max-w-[960px]">
-        <SectionHeader id="social-proof-heading" title={testimonials.heading} />
+        <motion.div variants={item} initial="hidden" whileInView="visible" viewport={viewport}>
+          <SectionHeader id="social-proof-heading" title={testimonials.heading} />
+        </motion.div>
 
         <div className="mt-14 grid gap-10 md:grid-cols-[1fr_auto] md:gap-16">
           <div className="min-h-[180px]" aria-live="polite">
-            <blockquote style={contentStyle} className="border-l-2 border-[var(--fw-text)] pl-8">
-              <p className="text-pretty text-2xl leading-[1.5] tracking-[-0.02em] text-[var(--fw-text)]">
-                "{testimonial.quote}"
-              </p>
-              <footer className="mt-6">
-                <cite className="block font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)] not-italic">
-                  {testimonial.name}, {testimonial.role}
-                </cite>
-                <span className="mt-1 block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[var(--fw-muted)]/60">
-                  {testimonial.firm}
-                </span>
-              </footer>
-            </blockquote>
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.blockquote
+                key={activeIndex}
+                initial={{ opacity: 0, x: direction * xOffset }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -xOffset }}
+                transition={{ duration: duration.fast, ease: ease.out }}
+                className="border-l-2 border-[var(--fw-text)] pl-8"
+              >
+                <p className="text-pretty text-2xl leading-[1.5] tracking-[-0.02em] text-[var(--fw-text)]">
+                  "{testimonial.quote}"
+                </p>
+                <footer className="mt-6">
+                  <cite className="block font-[var(--font-mono)] text-[11px] uppercase tracking-[0.16em] text-[var(--fw-muted)] not-italic">
+                    {testimonial.name}, {testimonial.role}
+                  </cite>
+                  <span className="mt-1 block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-[var(--fw-muted)]/60">
+                    {testimonial.firm}
+                  </span>
+                </footer>
+              </motion.blockquote>
+            </AnimatePresence>
           </div>
 
           <div className="flex items-end md:flex-col md:items-end md:justify-between">

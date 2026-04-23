@@ -1,5 +1,7 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../components/Container";
 import { siteContent } from "../data/siteContent";
+import { fadeUp, stagger, fadeOnly, viewport } from "../lib/motion";
 
 const { process } = siteContent;
 
@@ -84,11 +86,20 @@ const STEPS = process.steps.map((step, i) => ({ ...step, UI: UI_MAP[i] }));
 /* ─── Section ─── */
 
 export function ProcessSection() {
+  const prefersReduced = useReducedMotion();
+  const item = prefersReduced ? fadeOnly : fadeUp;
+
   return (
     <section id="process" aria-labelledby="process-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
       <Container>
         {/* Split header */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <motion.div
+          className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+          variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           <div>
             <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">{process.kicker}</p>
             <h2
@@ -101,12 +112,18 @@ export function ProcessSection() {
           <p className="max-w-[340px] text-sm leading-7 text-[var(--fw-muted)] md:text-right">
             {process.description}
           </p>
-        </div>
+        </motion.div>
 
         {/* 3-column grid with 1px dividers */}
-        <div className="mt-14 grid grid-cols-1 gap-px border border-[var(--fw-border)] bg-[var(--fw-border)] md:grid-cols-3">
+        <motion.div
+          className="mt-14 grid grid-cols-1 gap-px border border-[var(--fw-border)] bg-[var(--fw-border)] md:grid-cols-3"
+          variants={stagger(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {STEPS.map((step) => (
-            <article key={step.step} className="flex h-full flex-col bg-[var(--fw-bg)] p-6 md:p-8">
+            <motion.article key={step.step} variants={item} className="flex h-full flex-col bg-[var(--fw-bg)] p-6 md:p-8">
               {/* Top — Step indicator */}
               <div className="mb-6 flex items-center gap-3">
                 <span className="grid h-8 w-8 place-items-center border border-[var(--fw-text)] font-[var(--font-mono)] text-[9px] tracking-[0.2em] text-[var(--fw-text)]">
@@ -125,9 +142,9 @@ export function ProcessSection() {
                 <h3 className="text-lg font-medium tracking-[-0.02em] text-[var(--fw-text)]">{step.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-[var(--fw-muted)]">{step.description}</p>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

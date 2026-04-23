@@ -1,9 +1,10 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "../components/Container";
 import { siteContent } from "../data/siteContent";
+import { fadeUp, stagger, fadeOnly, viewport } from "../lib/motion";
 
 const { value } = siteContent;
 
-// Icons kept in component since they're JSX (not serializable data)
 const ICONS: Record<string, React.ReactNode> = {
   capture: (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square">
@@ -37,35 +38,44 @@ const ICONS: Record<string, React.ReactNode> = {
 };
 
 export function ValueSection() {
+  const prefersReduced = useReducedMotion();
+  const item = prefersReduced ? fadeOnly : fadeUp;
+
   return (
     <section aria-labelledby="value-heading" className="border-b border-[var(--fw-border)] bg-[var(--fw-bg)] py-24">
       <Container>
-        <div className="mx-auto max-w-[760px] text-center">
+        <motion.div className="mx-auto max-w-[760px] text-center" variants={item} initial="hidden" whileInView="visible" viewport={viewport}>
           <p className="text-pretty text-2xl leading-[1.6] tracking-[-0.02em] text-[var(--fw-muted)] md:text-[1.75rem] md:leading-[1.6]">
             {value.statement}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mx-auto mt-20 max-w-xl text-center md:mt-24">
+        <motion.div className="mx-auto mt-20 max-w-xl text-center md:mt-24" variants={item} initial="hidden" whileInView="visible" viewport={viewport}>
           <h2 id="value-heading" className="text-3xl leading-tight tracking-[-0.03em] text-[var(--fw-text)] md:text-4xl">
             {value.heading}
           </h2>
           <p className="mt-4 text-base leading-7 text-[var(--fw-muted)] md:text-lg md:leading-8">
             {value.subheading}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-px border border-[var(--fw-border)] bg-[var(--fw-border)] sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          className="mt-14 grid grid-cols-1 gap-px border border-[var(--fw-border)] bg-[var(--fw-border)] sm:grid-cols-2 lg:grid-cols-4"
+          variants={stagger(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {value.features.map((feature) => (
-            <article key={feature.id} className="flex flex-col bg-[var(--fw-bg)] p-6 transition-colors duration-150 ease-out hover:bg-[var(--fw-concrete)] md:p-8">
+            <motion.article key={feature.id} variants={item} className="flex flex-col bg-[var(--fw-bg)] p-6 transition-colors duration-150 ease-out hover:bg-[var(--fw-concrete)] md:p-8">
               <div className="mb-6 flex h-10 w-10 items-center justify-center border border-[var(--fw-border-strong)] text-[var(--fw-text)]">
                 {ICONS[feature.id]}
               </div>
               <h3 className="text-[15px] font-medium tracking-[-0.01em] text-[var(--fw-text)]">{feature.title}</h3>
               <p className="mt-2 text-sm leading-6 text-[var(--fw-muted)]">{feature.description}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
