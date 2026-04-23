@@ -1,11 +1,26 @@
+## FieldWork Landing Page
 
-  # Build FieldWork Landing Page
+Tailwind-first React marketing page refactored from a generated prototype into a minimal, scalable component architecture.
 
-  This is a code bundle for Build FieldWork Landing Page. The original project is available at https://www.figma.com/design/xm7wXWYRfHJ5RpfY9i6BZU/Build-FieldWork-Landing-Page.
+### Stack
 
-  ## Running the code
+- React + Vite
+- TypeScript
+- Tailwind CSS
 
-  Run `npm i` to install the dependencies.
+### Project Structure
 
-  Run `npm run dev` to start the development server.
+- `src/app`: page composition entry
+- `src/components`: reusable primitives (container, buttons, section header, cards)
+- `src/sections`: top-level marketing sections
+- `src/styles`: global tokens + Tailwind entry styles
+
+### Development
+
+1. Install dependencies:
+  - `npm install`
+2. Start dev server:
+  - `npm run dev`
+3. Create production build:
+  - `npm run build`
   
