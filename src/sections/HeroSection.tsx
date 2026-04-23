@@ -7,7 +7,7 @@ export function HeroSection() {
       <Container>
         <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="max-w-2xl">
-            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Field Operations Platform</p>
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Site Documentation Platform</p>
 
             <h1
               id="hero-heading"
@@ -20,7 +20,7 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
-              Transform field photos and voice notes into professional progress reports. No admin overhead. No lost context.
+              Transform field photos and notes into structured progress reports. No admin overhead. No lost context.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">

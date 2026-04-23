@@ -45,7 +45,7 @@ const PRICING_TIERS = [
       "Custom integrations",
     ],
     ctaLabel: "Contact Sales",
-    ctaHref: "mailto:hello@fieldwork.com",
+    ctaHref: "mailto:hello@structra.io",
   },
 ];
 

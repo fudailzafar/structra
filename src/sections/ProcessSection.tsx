@@ -11,7 +11,7 @@ const PROCESS_STEPS = [
   {
     step: "02",
     title: "Contextualize",
-    description: "FieldWork groups updates by date, location, and project stage automatically.",
+    description: "Structra groups updates by date, location, and project stage automatically.",
   },
   {
     step: "03",

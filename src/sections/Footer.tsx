@@ -61,12 +61,12 @@ export function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           {/* Left — Brand + Newsletter */}
           <section className="max-w-[300px] shrink-0">
-            <a href="/" aria-label="FieldWork home" className="font-[var(--font-mono)] text-sm tracking-[0.24em] text-white">
-              FIELDWORK
+            <a href="/" aria-label="Structra home" className="font-[var(--font-mono)] text-sm tracking-[0.24em] text-white">
+              STRUCTRA
             </a>
 
             <p className="mt-3 text-sm leading-6 text-white/75">
-              Site documentation, engineered for precision.
+              Documentation, structured.
             </p>
 
             <form
@@ -107,7 +107,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/60">© 2026 FieldWork</p>
+          <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/60">© 2026 Structra</p>
 
           <nav aria-label="Footer legal links">
             <ul className="flex items-center gap-4 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/55">

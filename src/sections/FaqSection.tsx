@@ -4,27 +4,39 @@ import { Container } from "../components/Container";
 const FAQ_ITEMS = [
   {
     id: "capture-flow",
-    question: "How does FieldWork keep capture fast on active job sites?",
+    question: "How does Structra turn field photos into reports?",
     answer:
-      "Capture is designed around single-pass input. Teams can attach photos, short notes, and voice context immediately, then structure is applied automatically during report assembly.",
+      "Teams capture photos and notes directly on site. Structra automatically groups entries by date, location, and project phase, then generates a formatted progress report ready for client review or internal distribution.",
   },
   {
     id: "report-consistency",
     question: "Can report format stay consistent across different project types?",
     answer:
-      "Yes. FieldWork enforces a stable reporting skeleton while allowing project-specific detail. This keeps weekly updates comparable for clients, PMs, and internal leadership.",
+      "Yes. Structra enforces a stable reporting skeleton while allowing project-specific detail. This keeps weekly site documentation comparable for clients, project managers, and internal leadership regardless of project type.",
   },
   {
     id: "team-adoption",
     question: "How quickly can a field team adopt the workflow?",
     answer:
-      "Most teams are operational within the first week because the system removes admin steps instead of adding them. The interface prioritizes familiar field actions over complex setup.",
+      "Most teams are operational within the first week. The construction reporting workflow removes administrative steps instead of adding them, and the interface prioritizes familiar field actions over complex configuration.",
   },
   {
     id: "audit-readiness",
-    question: "Is documentation suitable for audit and claims review?",
+    question: "Is the documentation suitable for audit and claims review?",
     answer:
-      "Captured events are timestamped and preserved with contextual metadata. This creates a clear project record that is suitable for internal audits, stakeholder reviews, and formal claim support.",
+      "Captured events are timestamped and preserved with contextual metadata. This creates a verifiable project record suitable for internal audits, regulatory reviews, stakeholder reporting, and formal claim support.",
+  },
+  {
+    id: "offline-support",
+    question: "Does Structra work offline on construction sites?",
+    answer:
+      "Structra is designed for real-world field conditions. Capture works with intermittent connectivity, and data syncs automatically when connection is restored. No field reporting data is lost between uploads.",
+  },
+  {
+    id: "vs-pm-tools",
+    question: "How is Structra different from general project management tools?",
+    answer:
+      "General tools manage tasks and timelines. Structra focuses specifically on site documentation — converting raw field observations into structured, client-ready reports. It's built for the construction documentation workflow, not project scheduling.",
   },
 ];
 
@@ -73,7 +85,7 @@ export function FaqSection() {
             Frequently asked questions
           </h2>
           <p className="mx-auto mt-4 max-w-[540px] text-base leading-7 text-[var(--fw-muted)] md:text-lg md:leading-8">
-            Technical answers for teams evaluating documentation workflows.
+            Technical answers for teams evaluating site documentation workflows.
           </p>
         </header>
 

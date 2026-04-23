@@ -19,10 +19,10 @@ export function Navbar() {
         {/* Left — Logo */}
         <a
           href="/"
-          aria-label="FieldWork home"
+          aria-label="Structra home"
           className="font-[var(--font-mono)] text-sm tracking-[0.22em] text-[var(--fw-text)]"
         >
-          FIELDWORK
+          STRUCTRA
         </a>
 
         {/* Center — Desktop Nav */}
@@ -45,7 +45,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <div className="hidden md:block">
             <ButtonLink href="#pricing" ariaLabel="Start your free trial">
-              Start Trial
+              Start Free Trial
             </ButtonLink>
           </div>
 
@@ -106,7 +106,7 @@ export function Navbar() {
             </ul>
             <div className="mt-4 border-t border-[var(--fw-border)] pt-4">
               <ButtonLink href="#pricing" ariaLabel="Start your free trial" className="w-full">
-                Start Trial
+                Start Free Trial
               </ButtonLink>
             </div>
           </Container>
