@@ -68,7 +68,7 @@ export function FaqSection() {
           <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[var(--fw-muted)]">Support</p>
           <h2
             id="faq-heading"
-            className="mt-4 text-balance text-3xl font-medium leading-tight tracking-[-0.03em] text-[var(--fw-text)] md:text-5xl"
+            className="mt-4 text-balance text-3xl font-normal leading-tight tracking-[-0.03em] text-[var(--fw-text)] md:text-5xl"
           >
             Frequently asked questions
           </h2>

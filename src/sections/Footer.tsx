@@ -12,18 +12,11 @@ type FooterLinkGroupProps = {
   ariaLabel: string;
 };
 
-const LINKS_COLUMN: FooterLink[] = [
+const NAV_COLUMN: FooterLink[] = [
   { label: "Process", href: "#process" },
   { label: "Transformation", href: "#transformation" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
-];
-
-const PAGES_COLUMN: FooterLink[] = [
-  { label: "Home", href: "/" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "mailto:hello@fieldwork.com" },
 ];
 
 const SOCIALS_COLUMN: FooterLink[] = [
@@ -64,8 +57,8 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--fw-border-strong)] bg-[#16181a] text-white">
       <Container className="py-12 md:py-14">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-x-8 lg:gap-x-10">
-          {/* Brand + Newsletter column */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-[1.4fr_1fr_1fr] md:gap-x-10 lg:gap-x-14">
+          {/* Brand + Newsletter */}
           <section className="col-span-2 md:col-span-1">
             <a href="/" aria-label="FieldWork home" className="font-[var(--font-mono)] text-sm tracking-[0.24em] text-white">
               FIELDWORK
@@ -104,8 +97,7 @@ export function Footer() {
             </form>
           </section>
 
-          <FooterLinkGroup title="Links" links={LINKS_COLUMN} ariaLabel="Footer links" />
-          <FooterLinkGroup title="Pages" links={PAGES_COLUMN} ariaLabel="Footer pages" />
+          <FooterLinkGroup title="Navigation" links={NAV_COLUMN} ariaLabel="Footer navigation" />
           <FooterLinkGroup title="Socials" links={SOCIALS_COLUMN} ariaLabel="Footer socials" />
         </div>
 
