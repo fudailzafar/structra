@@ -11,18 +11,16 @@ export function HeroSection() {
 
             <h1
               id="hero-heading"
-              className="mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
+              className="mt-6 max-w-[620px] text-[clamp(2rem,6vw,3.75rem)] font-bold leading-[1.1] tracking-[-0.03em] text-[var(--fw-text)]"
             >
               Site documentation
               <br />
               that works
-              <br />
               like you do.
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-[var(--fw-muted)]">
-              Transform field photos and voice notes into professional progress reports. No admin overhead, no lost context,
-              and no extra workflow complexity.
+            <p className="mt-8 max-w-xl text-lg font-normal leading-8 text-[var(--fw-muted)]">
+              Transform field photos and voice notes into professional progress reports. No admin overhead. No lost context.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">

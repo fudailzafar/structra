@@ -57,14 +57,15 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--fw-border-strong)] bg-[#16181a] text-white">
       <Container className="py-12 md:py-14">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-[1.4fr_1fr_1fr] md:gap-x-10 lg:gap-x-14">
-          {/* Brand + Newsletter */}
-          <section className="col-span-2 md:col-span-1">
+        {/* Main: Left block + Right block */}
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          {/* Left — Brand + Newsletter */}
+          <section className="max-w-[300px] shrink-0">
             <a href="/" aria-label="FieldWork home" className="font-[var(--font-mono)] text-sm tracking-[0.24em] text-white">
               FIELDWORK
             </a>
 
-            <p className="mt-3 max-w-[240px] text-sm leading-6 text-white/75">
+            <p className="mt-3 text-sm leading-6 text-white/75">
               Site documentation, engineered for precision.
             </p>
 
@@ -78,7 +79,7 @@ export function Footer() {
               <label htmlFor="footer-newsletter-email" className="sr-only">
                 Email address
               </label>
-              <div className="mt-2.5 flex flex-col gap-2 sm:flex-row sm:items-stretch">
+              <div className="mt-2.5 flex gap-2">
                 <input
                   id="footer-newsletter-email"
                   name="email"
@@ -97,10 +98,14 @@ export function Footer() {
             </form>
           </section>
 
-          <FooterLinkGroup title="Navigation" links={NAV_COLUMN} ariaLabel="Footer navigation" />
-          <FooterLinkGroup title="Socials" links={SOCIALS_COLUMN} ariaLabel="Footer socials" />
+          {/* Right — Navigation + Socials grouped */}
+          <div className="flex gap-x-12">
+            <FooterLinkGroup title="Navigation" links={NAV_COLUMN} ariaLabel="Footer navigation" />
+            <FooterLinkGroup title="Socials" links={SOCIALS_COLUMN} ariaLabel="Footer socials" />
+          </div>
         </div>
 
+        {/* Bottom bar */}
         <div className="mt-8 flex flex-col gap-3 border-t border-white/15 pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-white/60">© 2026 FieldWork</p>
 
