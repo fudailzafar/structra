@@ -1,5 +1,7 @@
 # Structra — Landing Page Template
 
+![Structra demo](./public/demo.gif)
+
 A minimal, production-ready landing page template built with Next.js 14, designed for SaaS products, developer tools, and professional services. Edit one file to make it yours.
 
 ---
