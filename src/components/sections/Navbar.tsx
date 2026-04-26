@@ -41,7 +41,7 @@ export function Navbar() {
           <a
             href="/"
             aria-label="Structra home"
-            className="font-black text-sm tracking-[0.01em] text-[var(--fw-text)] [font-weight:900] transition-opacity hover:opacity-80"
+            className="font-black text-sm tracking-[0.01em] text-[var(--fw-text)] transition-opacity hover:opacity-80"
           >
             {brand.name}
           </a>
