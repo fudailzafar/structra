@@ -63,8 +63,10 @@ export function PricingTier({
       <ul className="mt-10 flex-1 space-y-4">
         {features.map((feature) => (
           <li key={feature} className="flex items-start gap-3 text-base text-[var(--fw-text)]">
-            <span className="mt-1 grid h-5 w-5 place-items-center border border-[var(--fw-border-strong)] text-[11px]" aria-hidden="true">
-              +
+            <span className="mt-[2px] flex h-5 w-5 shrink-0 items-center justify-center border border-[var(--fw-border-strong)]" aria-hidden="true">
+              <svg className="h-[10px] w-[10px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              </svg>
             </span>
             <span>{feature}</span>
           </li>
