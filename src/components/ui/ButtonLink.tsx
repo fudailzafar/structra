@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+
 
 type ButtonVariant = "primary" | "outline" | "ghost";
 
@@ -30,8 +32,14 @@ export function ButtonLink({
   const resolvedAriaLabel = ariaLabel ?? (typeof children === "string" ? children : undefined);
 
   return (
-    <a href={href} aria-label={resolvedAriaLabel} className={`${baseClasses} ${variantClasses[variant]} ${className}`.trim()}>
+    <motion.a
+      href={href}
+      aria-label={resolvedAriaLabel}
+      className={`${baseClasses} ${variantClasses[variant]} ${className}`.trim()}
+      whileHover={{ scale: 1.02, opacity: 0.9 }}
+      whileTap={{ scale: 0.98 }}
+    >
       {children}
-    </a>
+    </motion.a>
   );
 }
